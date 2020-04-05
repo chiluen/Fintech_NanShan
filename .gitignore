@@ -1,1 +1,2 @@
-data/*
+/data/*.xlsx
+/data/*.h5
