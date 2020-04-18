@@ -1,4 +1,4 @@
 /data/*.xlsx
 /data/*.h5
-
+/data/*.ipynb
 .ipynb_checkpoints
