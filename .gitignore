@@ -1,4 +1,5 @@
 /data/*.xlsx
 /data/*.h5
 /data/*.ipynb
+/data/*.xmind
 .ipynb_checkpoints
