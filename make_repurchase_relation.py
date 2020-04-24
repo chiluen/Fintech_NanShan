@@ -73,13 +73,25 @@ for counter, data in enumerate(COV_keys_list[:-2]):
             
     for d_COV in compare_list_COV: #去做對比
         for d_CLAIM in compare_list_CLAIM:
-            if d_COV[2] > d_CLAIM[2]:
-                relation.append([d_COV[0], d_CLAIM[1], d_COV[1]])
+            if d_COV[2] - d_CLAIM[2] > 720: #2年以上
+                relation.append([d_COV[0], d_CLAIM[1], d_COV[1], "4"])
+                
+            elif d_COV[2] - d_CLAIM[2] > 540: #1年半到2年
+                relation.append([d_COV[0], d_CLAIM[1], d_COV[1], "3"])
+                
+            elif d_COV[2] - d_CLAIM[2] > 360: #1年到1年半
+                relation.append([d_COV[0], d_CLAIM[1], d_COV[1], "2"])
+            
+            elif d_COV[2] - d_CLAIM[2] > 180: #半年到1年
+                relation.append([d_COV[0], d_CLAIM[1], d_COV[1], "1"])
+            
+            elif d_COV[2] - d_CLAIM[2] > 0: #半年以內
+                relation.append([d_COV[0], d_CLAIM[1], d_COV[1], "0"])
                 
     compare_list_CLAIM = [] 
     compare_list_COV = []
 
-relation.insert(0,['Policy_holder_RK', 'POLICY_CLAIM_RK', 'POLICY_COV_RK'])
+relation.insert(0,['Policy_holder_RK', 'POLICY_CLAIM_RK', 'POLICY_COV_RK', 'Time_spread'])
 relation = np.array(relation)
 dtype = h5py.special_dtype(vlen=str)
 with h5py.File('relation.h5','w') as f:
